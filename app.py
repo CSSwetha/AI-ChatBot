@@ -84,7 +84,7 @@ if "show_upload_modal" not in st.session_state:
     st.session_state.show_upload_modal = False
 
 # ----------------------------
-# Custom CSS - CLEAN & HIGH CONTRAST
+# Custom CSS - LIGHT THEME, BLACK TEXT, NO HOVER EFFECTS
 # ----------------------------
 st.markdown("""
     <style>
@@ -92,308 +92,266 @@ st.markdown("""
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
     header {visibility: hidden;}
-    
-    /* Remove all white boxes */
+
+    /* App background and main text color */
     .stApp {
-        background-color: #0a0a0a;
+        background-color: #ffffff;
+        color: #000000 !important;
     }
-    
-    /* Main container */
+
+    /* Main container - light and airy */
     .block-container {
         padding-top: 2rem;
         padding-bottom: 2rem;
         max-width: 900px;
+        background-color: #ffffff !important;
+    }
+
+    /* Ensure standard text elements are black for readability */
+    html, body, p, div, span, li, .stMarkdown, .stText, .stTextInput, .stExpander {
+        color: #000000 !important;
         background-color: transparent !important;
     }
-    
-    /* Remove white backgrounds from all elements */
-    div[data-testid="stVerticalBlock"] > div {
-        background-color: transparent !important;
-    }
-    
-    /* Sidebar styling - DARK WITH HIGH CONTRAST */
+
+    /* Sidebar - light neutral */
     [data-testid="stSidebar"] {
-        background-color: #0f172a !important;
-        border-right: 2px solid #1e293b;
+        background-color: #f8fafc !important; /* very light gray-blue */
+        border-right: 1px solid #e6eef6 !important;
     }
-    
+
     [data-testid="stSidebar"] * {
-        color: #e2e8f0 !important;
+        color: #000000 !important;
     }
-    
+
     [data-testid="stSidebar"] h1 {
-        color: #fbbf24 !important;
+        color: #0f172a !important;
         font-weight: 700 !important;
         font-size: 1.5rem !important;
         padding: 1rem 0;
     }
-    
-    [data-testid="stSidebar"] h2, 
+
+    [data-testid="stSidebar"] h2,
     [data-testid="stSidebar"] h3 {
-        color: #fbbf24 !important;
+        color: #0f172a !important;
         font-weight: 600 !important;
     }
-    
-    /* Chat messages - HIGH CONTRAST, NO WHITE BOXES */
+
+    /* Chat messages - subtle borders, white background */
     .chat-message {
-        padding: 1.5rem;
-        margin: 1rem 0;
-        border-radius: 12px;
+        padding: 1rem;
+        margin: 0.75rem 0;
+        border-radius: 8px;
         display: flex;
         flex-direction: column;
         font-size: 1rem;
-        line-height: 1.6;
-        border: 2px solid;
+        line-height: 1.5;
+        border: 1px solid #e6eef6;
+        background-color: #ffffff !important;
+        color: #000000 !important;
     }
-    
+
     .user-message {
-        background-color: #1e3a8a !important;
-        border-color: #3b82f6 !important;
-        color: #e0e7ff !important;
+        background-color: #eef2ff !important; /* pale blue */
+        border-color: #dbeafe !important;
+        color: #000000 !important;
     }
-    
+
     .user-message * {
-        color: #e0e7ff !important;
+        color: #000000 !important;
     }
-    
+
     .assistant-message {
-        background-color: #1e293b !important;
-        border-color: #475569 !important;
-        color: #f1f5f9 !important;
+        background-color: #f3f4f6 !important; /* light gray */
+        border-color: #e5e7eb !important;
+        color: #000000 !important;
     }
-    
+
     .assistant-message * {
-        color: #f1f5f9 !important;
+        color: #000000 !important;
     }
-    
-    /* OCR Results - HIGH CONTRAST */
+
+    /* OCR Results - readable monospace on light background */
     .ocr-container {
-        background-color: #78350f !important;
-        border: 2px solid #fbbf24 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #f1c27d !important;
         padding: 1rem;
         margin: 1rem 0;
-        border-radius: 8px;
+        border-radius: 6px;
         font-family: 'Courier New', monospace;
         font-size: 0.95rem;
+        color: #000000 !important;
     }
-    
+
     .ocr-title {
         font-weight: 700;
-        color: #fde68a !important;
+        color: #92400e !important;
         margin-bottom: 0.5rem;
         font-size: 1rem;
     }
-    
+
     .ocr-container pre {
-        color: #fef3c7 !important;
+        color: #000000 !important;
         background-color: transparent !important;
         border: none !important;
         margin: 0 !important;
         padding: 0.5rem 0 !important;
     }
-    
+
     /* Image preview in chat */
     .image-preview {
         max-width: 400px;
         border-radius: 8px;
         margin: 0.5rem 0;
-        border: 2px solid #475569;
+        border: 1px solid #e5e7eb;
+        background-color: #ffffff;
     }
-    
-    /* Buttons - HIGH CONTRAST */
+
+    /* Buttons - flat, no hover changes */
     .stButton button {
         border-radius: 8px;
         font-weight: 600;
-        transition: all 0.2s;
-        border: 2px solid;
-        background-color: #1e293b !important;
-        color: #f1f5f9 !important;
-        border-color: #475569 !important;
+        transition: none !important;
+        border: 1px solid #cbd5e1 !important;
+        background-color: #f1f5f9 !important; /* very light gray */
+        color: #000000 !important;
     }
-    
-    .stButton button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(251, 191, 36, 0.3);
-        background-color: #fbbf24 !important;
-        border-color: #f59e0b !important;
-        color: #1e293b !important;
-    }
-    
-    /* Sidebar buttons specific - HIGH CONTRAST */
+
+    /* Keep sidebar buttons consistent - no hovering transform */
     [data-testid="stSidebar"] .stButton button {
-        background-color: #1e293b !important;
-        color: #f1f5f9 !important;
-        border: 2px solid #475569 !important;
+        background-color: #f1f5f9 !important;
+        color: #000000 !important;
+        border: 1px solid #e6eef6 !important;
         font-size: 0.95rem;
         font-weight: 600;
     }
-    
-    [data-testid="stSidebar"] .stButton button:hover {
-        background-color: #fbbf24 !important;
-        color: #1e293b !important;
-        border-color: #f59e0b !important;
-        transform: translateX(4px);
+
+    /* Remove hover pseudo-class effects by ensuring :hover equals base */
+    .stButton button:hover,
+    [data-testid="stSidebar"] .stButton button:hover,
+    [data-testid="stSidebar"] button[kind="primary"]:hover,
+    [data-testid="stSidebar"] .streamlit-expanderHeader:hover {
+        background-color: inherit !important;
+        color: inherit !important;
+        border-color: inherit !important;
+        transform: none !important;
+        box-shadow: none !important;
     }
-    
-    /* Delete button hover */
-    [data-testid="stSidebar"] .stButton button[key*="del"]:hover {
-        background-color: #dc2626 !important;
-        color: #ffffff !important;
-        border-color: #b91c1c !important;
-    }
-    
-    /* New chat button - HIGH CONTRAST */
-    [data-testid="stSidebar"] button[kind="primary"] {
-        background: linear-gradient(to right, #3b82f6, #2563eb) !important;
-        border: 2px solid #1d4ed8 !important;
-        width: 100%;
-        margin-bottom: 1rem;
-        color: #ffffff !important;
-        font-weight: 700;
-        font-size: 1.05rem;
-    }
-    
-    [data-testid="stSidebar"] button[kind="primary"]:hover {
-        background: linear-gradient(to right, #fbbf24, #f59e0b) !important;
-        border-color: #d97706 !important;
-        color: #1e293b !important;
-        transform: scale(1.02);
-    }
-    
-    /* Selectbox styling - HIGH CONTRAST */
+
+    /* Selectbox styling */
     [data-testid="stSidebar"] .stSelectbox label {
-        color: #fbbf24 !important;
+        color: #0f172a !important;
         font-weight: 600;
         font-size: 1rem;
     }
-    
+
     [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {
-        background-color: #1e293b !important;
-        border: 2px solid #475569 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #e6eef6 !important;
     }
-    
-    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"]:hover {
-        border-color: #fbbf24 !important;
-        background-color: #334155 !important;
-    }
-    
+
     [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] > div {
-        color: #f1f5f9 !important;
+        color: #000000 !important;
     }
-    
-    /* Expander styling - HIGH CONTRAST */
+
+    /* Expander styling - no hover visual changes */
     [data-testid="stSidebar"] .streamlit-expanderHeader {
-        background-color: #1e293b !important;
-        color: #fbbf24 !important;
+        background-color: #ffffff !important;
+        color: #0f172a !important;
         font-weight: 600;
-        border-radius: 8px;
-        border: 2px solid #475569 !important;
+        border-radius: 6px;
+        border: 1px solid #e6eef6 !important;
     }
-    
-    [data-testid="stSidebar"] .streamlit-expanderHeader:hover {
-        background-color: #334155 !important;
-        border-color: #fbbf24 !important;
-    }
-    
-    /* Section headers - HIGH CONTRAST */
-    [data-testid="stSidebar"] .stMarkdown strong {
-        color: #fbbf24 !important;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-weight: 700;
-    }
-    
-    /* File uploader styling - NO WHITE BOX */
+
+    /* File uploader styling */
     .uploadedFile {
-        background-color: #1e293b !important;
-        border: 2px solid #475569 !important;
-        color: #f1f5f9 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #e6eef6 !important;
+        color: #000000 !important;
     }
-    
+
     [data-testid="stFileUploader"] {
-        background-color: #1e293b !important;
-        border: 2px solid #475569 !important;
+        background-color: #ffffff !important;
+        border: 1px solid #e6eef6 !important;
         border-radius: 8px;
         padding: 1rem;
     }
-    
+
     [data-testid="stFileUploader"] label {
-        color: #fbbf24 !important;
+        color: #0f172a !important;
         font-weight: 600;
     }
-    
+
     [data-testid="stFileUploader"] * {
-        color: #f1f5f9 !important;
+        color: #000000 !important;
     }
-    
-    /* Chat input styling - HIGH CONTRAST */
+
+    /* Chat input styling */
     .stChatInput > div {
-        border: 2px solid #475569 !important;
-        background-color: #1e293b !important;
+        border: 1px solid #e6eef6 !important;
+        background-color: #ffffff !important;
         border-radius: 8px;
     }
-    
+
     .stChatInput input {
-        color: #f1f5f9 !important;
-        background-color: #1e293b !important;
+        color: #000000 !important;
+        background-color: #ffffff !important;
     }
-    
+
     .stChatInput input::placeholder {
-        color: #94a3b8 !important;
+        color: #6b7280 !important;
     }
-    
+
     /* Welcome screen */
     .welcome-container {
         background-color: transparent !important;
         text-align: center;
         padding: 3rem;
     }
-    
+
     .welcome-container h1 {
-        color: #fbbf24 !important;
+        color: #0f172a !important;
         font-weight: 700;
         margin-bottom: 1rem;
     }
-    
+
     .welcome-container h3 {
-        color: #e2e8f0 !important;
+        color: #1f2937 !important;
         font-weight: 500;
         margin-bottom: 0.5rem;
     }
-    
+
     .welcome-container p {
-        color: #cbd5e1 !important;
+        color: #374151 !important;
         font-size: 1.1rem;
     }
-    
-    /* Spinner */
+
+    /* Spinner color */
     .stSpinner > div {
-        border-top-color: #fbbf24 !important;
+        border-top-color: #0f172a !important;
     }
-    
-    /* Success/Error messages */
+
+    /* Success/Error messages - lighter appearance */
     .stSuccess {
-        background-color: #166534 !important;
-        color: #dcfce7 !important;
-        border: 2px solid #22c55e !important;
+        background-color: #ecfdf5 !important;
+        color: #064e3b !important;
+        border: 1px solid #bbf7d0 !important;
     }
-    
+
     .stError {
-        background-color: #7f1d1d !important;
-        color: #fecaca !important;
-        border: 2px solid #dc2626 !important;
+        background-color: #fff1f2 !important;
+        color: #7f1d1d !important;
+        border: 1px solid #fecaca !important;
     }
-    
+
     /* Image in messages */
     .stImage {
         border-radius: 8px;
-        border: 2px solid #475569;
+        border: 1px solid #e6eef6;
     }
-    
+
     /* Horizontal rule */
     hr {
-        border-color: #475569 !important;
+        border-color: #e6eef6 !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -524,7 +482,8 @@ else:
         
         # Show message content
         if content:
-            st.markdown(content)
+            # Ensure displayed text uses black color on light background
+            st.markdown(f"<div style='color: #000000'>{content}</div>", unsafe_allow_html=True)
         
         st.markdown("</div>", unsafe_allow_html=True)
     
