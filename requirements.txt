@@ -3,4 +3,6 @@ pillow
 pytesseract
 opencv-python-headless
 numpy
+requests
+pandas
 ollama>=0.4
