@@ -1,0 +1,10 @@
+tesseract-ocr
+tesseract-ocr-eng
+tesseract-ocr-hin
+```
+
+### **Step 2: Verify your `requirements.txt`**
+
+Make sure your `requirements.txt` includes `pytesseract`. It should have a line like:
+```
+pytesseract
